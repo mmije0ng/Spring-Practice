@@ -15,8 +15,8 @@ public class SwaggerConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("springdoc-openapi")
+                        .title("test API")
                         .version("1.0")
-                        .description("wear swagger 실행"));
+                        .description("spring react test API"));
     }
 }
