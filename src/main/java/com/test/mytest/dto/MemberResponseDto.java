@@ -5,18 +5,17 @@ import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.util.List;
 
 public class MemberResponseDto {
+    @JsonNaming(PropertyNamingStrategies.LowerCamelCaseStrategy.class)
     @Getter
     @Builder
-    @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
     public static class MemberInfoDto{
         private Long id;
         private String userName; //사용자 이름
         private String nickName;
         private Integer age;
         private String profileImage;
-        private boolean isMember;
+        private Boolean isMember;
     }
 }
