@@ -3,6 +3,7 @@ package com.test.mytest.service;
 import com.test.mytest.dto.MemberResponseDto;
 import com.test.mytest.entity.Member;
 import com.test.mytest.repository.MemberRepository;
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ public class MemberService {
         this.memberRepository=memberRepository;
     }
 
+    @Transactional
     public MemberResponseDto.MemberInfoDto findMemberByUserName(String userName){
         List<Member> allMembers = memberRepository.findAll();
         allMembers.forEach(member -> log.info(member.getUserName()));
@@ -38,6 +40,7 @@ public class MemberService {
                 .build();
     }
 
+    @Transactional
     public List<Member> findAllMembers(){
         List<Member> allMembers = memberRepository.findAll();
         allMembers.forEach(member -> log.info(member.getUserName()));
