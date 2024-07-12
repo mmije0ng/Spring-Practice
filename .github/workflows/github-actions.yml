@@ -3,12 +3,6 @@ name: mijeong-test server for CI/CD
 on:
   push:
     branches: [ master ]
-    paths:
-      - '**/*.java'
-      - '**/build.gradle*'
-      - '**/settings.gradle*'
-      - '**/application*.yml'
-      - '**/*.sql'
 
 # 리전, 버킷 이름, CodeDeploy 앱 이름, CodeDeploy 배포 그룹 이름
 #env:
