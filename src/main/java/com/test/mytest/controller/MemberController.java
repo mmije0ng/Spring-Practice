@@ -32,4 +32,15 @@ public class MemberController {
                     .body(e.getMessage());
         }
     }
+
+    @Operation(summary = "모든 멤버 조회", description = "db에 저장되어 있는 모든 Member 조회 API")
+    @GetMapping("/all")
+    public ResponseEntity<?> findAllMembers(){
+        try {
+            return ResponseEntity.ok(memberService.findAllMembers());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(e.getMessage());
+        }
+    }
 }
