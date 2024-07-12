@@ -55,6 +55,9 @@ jobs:
           find src
         shell: bash
 
+      - name: Display application-prod.yml content
+        run: cat src/main/resources/application-prod.yml
+
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
