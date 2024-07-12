@@ -40,4 +40,4 @@ out/
 /src/main/resources/application-prod.yml
 
 # Ignore GitHub Actions workflow files
-.github/workflows/gradle.yml.yml
+#.github/workflows/gradle.yml
