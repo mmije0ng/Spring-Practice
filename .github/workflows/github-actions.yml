@@ -62,6 +62,10 @@ jobs:
       - name: Copy Jar
         run: cp ./build/libs/*.jar ./deploy
 
+      # appspec.yml 파일 복사
+      - name: Copy appspec.yml
+        run: cp appspec.yml ./deploy
+
       - name: Make zip file
         run: zip -qq -r ./$GITHUB_SHA.zip .
         shell: bash
