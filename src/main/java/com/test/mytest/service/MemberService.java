@@ -20,13 +20,13 @@ public class MemberService {
     }
 
     public MemberResponseDto.MemberInfoDto findMemberByUserName(String userName){
-        log.info("MemberService userName: "+userName);
-
         List<Member> allMembers = memberRepository.findAll();
         allMembers.forEach(member -> log.info(member.getUserName()));
 
         Member member = memberRepository.findByUserName(userName)
                 .orElseThrow( () -> new IllegalArgumentException("일치하는 멤버가 없습니다.") );
+
+        log.info("조회된 멤버 userName, nickName: " + member.getUserName() + ", " + member.getNickName());
 
         return MemberResponseDto.MemberInfoDto.builder()
                 .id(member.getId())
