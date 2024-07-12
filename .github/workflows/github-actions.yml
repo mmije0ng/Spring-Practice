@@ -1,4 +1,4 @@
-name: mijeong-test server for CI/CD 
+name: mijeong-test server for CI/CD
 
 on:
   push:
@@ -36,24 +36,24 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - uses: actions/checkout@v2
-      - run: touch ./src/main/resources/application-prod.yml
-      - run: echo "${{secrets.YML_PROD}}" > ./src/main/resources/application-prod.yml
-      - uses: actions/upload-artifact@v2
-        with:
-          name: application-prod.yml
-          path: ./src/main/resources/application-prod.yml
+#      - uses: actions/checkout@v2
+#      - run: touch ./src/main/resources/application-prod.yml
+#      - run: echo "${{secrets.YML_PROD}}" > ./src/main/resources/application-prod.yml
+#      - uses: actions/upload-artifact@v2
+#        with:
+#          name: application-prod.yml
+#          path: ./src/main/resources/application-prod.yml
 
-#      # 환경별 yml 파일 생성 - prod
-#      - name: Make application-prod.yml
-#        run: |
-#          if [ ! -d "src/main/resources" ]; then
-#            mkdir -p src/main/resources
-#          fi
-#          touch ./application-prod.yml
-#          echo "${{ secrets.YML_PROD }}" | base64 --decode > src/main/resources/application-prod.yml
-#          find src
-#        shell: bash
+      # 환경별 yml 파일 생성 - prod
+      - name: Make application-prod.yml
+        run: |
+          if [ ! -d "src/main/resources" ]; then
+            mkdir -p src/main/resources
+          fi
+          touch ./application-prod.yml
+          echo "${{ secrets.YML_PROD }}" | base64 --decode > src/main/resources/application-prod.yml
+          find src
+        shell: bash
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
