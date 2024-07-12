@@ -1,3 +1,4 @@
 # Spring-Practice
 
-http://3.34.146.100:8080/
+http://43.201.57.21:8080/ <br>
+http://43.201.57.21:8080/api/member/all
