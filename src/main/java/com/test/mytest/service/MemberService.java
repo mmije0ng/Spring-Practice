@@ -37,4 +37,11 @@ public class MemberService {
                 .isMember(true)
                 .build();
     }
+
+    public List<Member> findAllMembers(){
+        List<Member> allMembers = memberRepository.findAll();
+        allMembers.forEach(member -> log.info(member.getUserName()));
+
+        return allMembers;
+    }
 }
