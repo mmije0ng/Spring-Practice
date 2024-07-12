@@ -38,10 +38,11 @@ jobs:
     # 환경별 yml 파일 생성(3) - prod
     - name: make application-prod.yml
       if: contains(github.ref, 'master')
-      
+
       run: |
-        mkdir -p ./src/main/resources
-        echo "${{ secrets.YML_PROD }}" > ./src/main/resources/application-prod.yml
+        cd ./src/main/resources
+        touch ./application-prod.yml
+        echo "${{ secrets.YML_PROD }}" > ./application-prod.yml
       shell: bash
         
     - name: Grant execute permission for gradlew
