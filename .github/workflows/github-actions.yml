@@ -51,8 +51,7 @@ jobs:
           if [ ! -d "src/main/resources" ]; then
             mkdir -p src/main/resources
           fi
-          cd ./src/main/resources
-          touch ./application-prod.yml
+          touch src/main/resources/application-prod.yml
           echo "${{ secrets.YML_PROD }}" | base64 --decode > src/main/resources/application-prod.yml
           find src
         shell: bash
