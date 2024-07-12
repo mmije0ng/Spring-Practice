@@ -1,4 +1,4 @@
-name: mijeong-test server for CI/CD
+name: mijeong-test server CI/CD
 
 # master 브랜치에 push가 일어날 때
 on:
