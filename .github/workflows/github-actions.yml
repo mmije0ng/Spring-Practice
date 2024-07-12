@@ -64,9 +64,10 @@ jobs:
 
       - name: Check RDS connection
         run: |
-          nc -zv <RDS_url>
+          nc -zv <RDS_endpoint> <RDS_port>
         env:
-          RDS_url: ${{ secrets.DB_URL }}
+          RDS_endpoint: ${{ secrets.RDS_ENDPOINT }}
+          RDS_port: 3306
 
       #gradle build
       - name: Build with Gradle
