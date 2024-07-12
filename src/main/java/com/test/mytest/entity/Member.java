@@ -33,9 +33,9 @@ public class Member extends BaseEntity {
     @Column(name="nick_name", unique = true)
     private String nickName;
 
-    //닉네임
+    //나이
     @NotNull
-    @Column(name="age", unique = true)
+    @Column(name="age")
     private Integer age;
 
     //프로필 이미지
