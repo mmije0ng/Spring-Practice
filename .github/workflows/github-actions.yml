@@ -1,8 +1,11 @@
-name: mijeong-test server for CI/CD 
+name: mijeong-test server for CI/CD
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
+    paths-ignore:
+      - 'README.md'
 
 # 리전, 버킷 이름, CodeDeploy 앱 이름, CodeDeploy 배포 그룹 이름
 env:
@@ -35,14 +38,14 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-
-#      - uses: actions/checkout@v2
-#      - run: touch ./src/main/resources/application-prod.yml
-#      - run: echo "${{secrets.YML_PROD}}" > ./src/main/resources/application-prod.yml
-#      - uses: actions/upload-artifact@v2
-#        with:
-#          name: application-prod.yml
-#          path: ./src/main/resources/application-prod.yml
+      
+      #      - uses: actions/checkout@v2
+      #      - run: touch ./src/main/resources/application-prod.yml
+      #      - run: echo "${{secrets.YML_PROD}}" > ./src/main/resources/application-prod.yml
+      #      - uses: actions/upload-artifact@v2
+      #        with:
+      #          name: application-prod.yml
+      #          path: ./src/main/resources/application-prod.yml
 
 
       # 환경별 yml 파일 생성 - prod
@@ -55,13 +58,14 @@ jobs:
           echo "${{ secrets.YML_PROD }}" | base64 --decode > src/main/resources/application-prod.yml
           find src
         shell: bash
+      
+      #      - name: Display application-prod.yml content
+      #        run: cat src/main/resources/application-prod.yml
 
-#      - name: Display application-prod.yml content
-#        run: cat src/main/resources/application-prod.yml
-
+      # reds 연결 체크
       - name: Check RDS connection
         run: |
-         nc -zv $RDS_endpoint $RDS_port
+          nc -zv $RDS_endpoint $RDS_port
         env:
           RDS_endpoint: ${{ secrets.RDS_ENDPOINT }}
           RDS_port: 3306
@@ -85,6 +89,7 @@ jobs:
       - name: Copy appspec.yml
         run: cp appspec.yml ./deploy
 
+      # zip 파일 생성
       - name: Make zip file
         run: zip -qq -r ./$GITHUB_SHA.zip .
         shell: bash
