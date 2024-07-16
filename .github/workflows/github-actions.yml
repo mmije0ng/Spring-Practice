@@ -1,4 +1,4 @@
-name: mijeong-test server for CI/CD 
+name: mijeong-test server for CI/CD  
 
 on:
   push:
