@@ -28,6 +28,28 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Create frontend folder
+        run: mkdir ./src/main/frontend
+
+      - name: Fetch frontend files
+        uses: actions/checkout@v4
+        with:
+          path: ./src/main/frontend
+          repository: mmije0ng/React-Practice
+
+      - run: mkdir ./src/main/resources/static
+
+      - name: Build frontend and move resources
+        run: |
+          cd ./src/main/frontend
+          npm install
+          npm run build
+          ls -al ./dist
+          cp -r ./dist/* /home/runner/work/Spring-Practice/Spring-Practice/src/main/resources/static
+          cd /home/runner/work/Spring-Practice/Spring-Practice/
+
+      - run: ls -al ./src/main/resources/static
+
       # gradle caching - 빌드 시간 향상
       - name: Gradle Caching
         uses: actions/cache@v3
