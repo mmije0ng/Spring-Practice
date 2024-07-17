@@ -10,7 +10,9 @@ public class WebConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
 
         registry.addMapping("/**") // 모든 경로에 대해 CORS 허용
-                .allowedOrigins("http://localhost:3000", "http://3.38.98.187:3000") // 허용할 Origin 설정
+                .allowedOrigins("http://localhost:3000",
+                        "http://cloud-use-front-bucket.s3-website.ap-northeast-2.amazonaws.com/",
+                        "https://d1nymhujoh4ldp.cloudfront.net/") // 허용할 Origin 설정
                 .allowedHeaders("*")
                 .allowedMethods("*") // 허용할 HTTP 메서드 설정
                 .allowCredentials(true)
